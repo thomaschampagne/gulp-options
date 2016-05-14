@@ -6,7 +6,7 @@ gulp build --myopt1 --myopt2
 ## Install
 
 ```bash
-npm install gulp-options`
+npm install gulp-options
 ```
 ## Example
 
