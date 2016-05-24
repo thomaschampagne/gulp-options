@@ -6,7 +6,7 @@ module.exports = {
     read: function(argv) {
         var optionsClean = [];
         argv.slice(2, argv.length).forEach(function(p) {
-            if (p.startsWith('--') && p.length !== 2) {
+            if (p.indexOf('--') === 0 && p.length !== 2) {
                 optionsClean.push(p.replace('--', ''));
             }
         });
