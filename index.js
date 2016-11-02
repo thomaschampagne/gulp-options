@@ -7,8 +7,10 @@ module.exports = {
         var optionsClean = {};
         argv.slice(2, argv.length).forEach(function(p) {
             if (p.indexOf('--') === 0 && p.length !== 2) {
-                [param, value] = p.replace('--', '').split('=');
-                optionsClean[param] = (value) ? value : '';
+                var splitParam = p.replace('--', '').split('=');
+                var param = splitParam[0];
+                var value = (splitParam[1] !== undefined) ? splitParam[1] : '';
+                optionsClean[param] = value;
             }
         });
         return optionsClean;
