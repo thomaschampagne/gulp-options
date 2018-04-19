@@ -10,7 +10,7 @@ module.exports = {
                 var splitParam = p.replace('--', '').split('=');
                 var param = splitParam[0];
                 var value = (splitParam[1] !== undefined) ? splitParam[1] : '';
-                optionsClean[param] = value;
+                optionsClean[param] = optionsClean[param] ? [].concat(optionsClean[param], value) : value;
             }
         });
         return optionsClean;

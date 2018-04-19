@@ -8,7 +8,7 @@ gulp build --myopt1 --myopt2 --myopt3=val
 ```bash
 npm install gulp-options
 ```
-## Example
+## Basic Example
 
 ### gulpfile.js
 ```js
@@ -42,10 +42,35 @@ gulp.task('mytask', function() {
 
 ```
 
-### gulp commands with example gulpfile.js
+### gulp commands with above gulpfile.js
 ```bash
 gulp mytask --prod          # source files moved to  release/ folder
 gulp mytask --debug         # source files moved to  debug/ folder
 gulp mytask --env=customenv # source files moved to  customenv/ folder
 gulp mytask                 # source files moved to  dev/ folder
+```
+
+## Multiple option value example
+
+### gulpfile.js
+```js
+var gulp = require('gulp');
+var options = require('gulp-options');
+var somePlugin = require('some-awesome-plugin');
+
+gulp.task('mytask', function() {
+    const values = options.get('value');
+
+    console.log(values);
+
+    return gulp.src('src/**/*.*')
+        .pipe(somePlugin(values))
+        .pipe(gulp.dest(`${env}/`));
+});
+
+```
+### gulp commands with above gulpfile.js
+```bash
+gulp mytask --value=5              # logs 5 and passes it to somePlugin
+gulp mytask --value=5 --value=6    # logs [5, 6] and passes it to somePlugin
 ```
